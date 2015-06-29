@@ -27,9 +27,11 @@ yomi_buttons.each do |button|
     html  = data.content
     text  = data.at('/html/body').text
 
+    filename = data.uri.to_s.match(/\/([^\/]*)\.html$/)[1]
+
     ap title
-    File.write(File.join(html_dir, "#{title}.html"), html)
-    File.write(File.join(text_dir, "#{title}.txt"),  text)
+    File.write(File.join(html_dir, "#{filename}.html"), html)
+    File.write(File.join(text_dir, "#{filename}.txt"),  text)
     open(downloaded_files, 'a') { |f| f.puts link }
     sleep 3
   end
